@@ -1,10 +1,7 @@
 <template>
   <div class="index">
-    <div class="search">
-      <div class="search-input">
-        <icon class="search-icon" type="search" size="16"/>搜索
-      </div>
-    </div>
+    <search></search>
+    1
     <div class="index-banner">
       <swiper class="banner" indicator-dots autoplay circular>
         <block v-for="(item, idex) in urlImg" :key="idex">
@@ -39,7 +36,8 @@
   </div>
 </template>
 <script>
-import request from "./../../utils/request.js"
+import request from "@/utils/request.js"
+import search from "@/components/search"
 export default {
   data() {
     return {
@@ -47,6 +45,9 @@ export default {
       menusdata:[],
       floordata:[]
     };
+  },
+  components: {
+    search
   },
   mounted() {
     // wx.request({
