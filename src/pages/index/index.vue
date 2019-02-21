@@ -1,7 +1,6 @@
 <template>
   <div class="index">
     <search></search>
-    1
     <div class="index-banner">
       <swiper class="banner" indicator-dots autoplay circular>
         <block v-for="(item, idex) in urlImg" :key="idex">
