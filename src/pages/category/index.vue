@@ -13,7 +13,7 @@
                             <div class="listhead">{{listitem.cat_name}}</div>
                             <div class="listmain">
                                 <block v-for="(mainitem, mainindex) in listitem.children" :key="mainindex">
-                                    <div class="mainpro">
+                                    <div class="mainpro" @tap ="gotoGoodlist(mainitem.cat_name)">
                                         <image :src="mainitem.cat_icon"></image>
                                         <div>{{mainitem.cat_name}}</div>
                                     </div>
@@ -99,6 +99,7 @@
 <script>
 import request from "@/utils/request"
 import search from "@/components/search"
+import { setTimeout } from 'timers';
 export default {
     data () {
         return {
@@ -118,7 +119,17 @@ export default {
             this.tabindex = index
         },
         handleRightClick(index){
-            this.mainList = this.fenleiList[index].children
+            // 优化数据返回顶部功能
+            this.mainList = [];
+            setTimeout(()=>{
+                this.mainList = this.fenleiList[index].children
+            },0);
+            
+        },
+        gotoGoodlist(name){
+            wx.navigateTo({
+                url: '/pages/good_list/main?keyword='+name
+            })
         },
         initlist(){
            request("https://www.zhengzhicheng.cn/api/public/v1/categories") 
